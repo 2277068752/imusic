@@ -1,0 +1,48 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-weight: 300 !important;
+  font-family: "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  -webkit-user-select: none;
+  /* 禁止选中文本（如无文本选中需求，此为必选项） */
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  color: #333333;
+  -webkit-overflow-scrolling: touch;
+}
+
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input {
+  font-weight: 300 !important;
+}
+
+a,
+img {
+  -webkit-touch-callout: none;
+  /* 禁止长按链接与图片弹出菜单 */
+}
+
+a {
+  text-decoration: none;
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+img {
+  vertical-align: middle;
+  border: 0;
+  width: 100%;
+  height: auto;
+}
