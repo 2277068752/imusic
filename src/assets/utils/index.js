@@ -1,6 +1,6 @@
 import Common from './common.js'
 
-export const utils = { Common }
+export const utils = {Common}
 
 export default {
   install (Vue) {

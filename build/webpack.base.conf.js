@@ -31,7 +31,7 @@ module.exports = {
   },
   module: {
     rules: [
-      ...(config.dev.useEslint? [{
+      ...(config.dev.useEslint ? [{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
@@ -48,7 +48,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ['style', 'css', 'sass']
       },
       {
         test: /\.js$/,
@@ -80,5 +80,8 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    // new webpack.optimize.ModuleConcatenationPlugin()
+  ]
 }

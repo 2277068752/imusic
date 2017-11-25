@@ -1,7 +1,6 @@
 /**
  * Created by chang on 2017/8/2.
  */
-import Vue from 'vue'
 import axios from 'axios'
 import config from '../../config/index'
 
@@ -11,15 +10,13 @@ import config from '../../config/index'
  * @param load
  */
 function successParse (res, load) {
-  if (load) {
-    Vue.$vux.loading.hide()
-  }
   try {
     return JSON.parse(res.data)
   } catch (ex) {
     return res.data
   }
 }
+
 /**
  * 失败处理
  * @param ex
@@ -27,24 +24,22 @@ function successParse (res, load) {
  * @returns {Promise.<*>|Promise<R>}
  */
 function errorParse (ex, load) {
-  if (load) {
-    Vue.$vux.loading.hide()
-  }
   switch (ex.status) {
     case 401:
       // 权限过期
-      return Promise.reject({ code: ex.status, msg: '您的权限已过期，请重新登录！' }) // eslint-disable-line
+      return Promise.reject({code: ex.status, msg: '您的权限已过期，请重新登录！'}) // eslint-disable-line
     case 400:
       // 请求参数错误
-      return Promise.reject({ code: ex.status, msg: '提交的数据有错误！' }) // eslint-disable-line
+      return Promise.reject({code: ex.status, msg: '提交的数据有错误！'}) // eslint-disable-line
     case 500:
       // 系统错误
-      return Promise.reject({ code: ex.status, msg: '系统报错啦，请联系管理员！' }) // eslint-disable-line
+      return Promise.reject({code: ex.status, msg: '系统报错啦，请联系管理员！'}) // eslint-disable-line
     default:
       // 其它
-      return Promise.reject({ code: ex.status, msg: '网络异常，请稍后再试' }) // eslint-disable-line
+      return Promise.reject({code: ex.status, msg: '网络异常，请稍后再试'}) // eslint-disable-line
   }
 }
+
 /**
  * 生成请求接口地址
  * @param url 接口地址
@@ -67,11 +62,12 @@ function requestUrl (url) {
   } else {
     if (url.startsWith('/music')) {
       // 本地开发环境，调用测试接口
-      url = url.replace('/music', '')
+    //  url = url.replace('/music', '')
     }
   }
   return url
 }
+
 /**
  * Ajax请求方法
  * @param url 接口地址
@@ -85,10 +81,7 @@ function requestUrl (url) {
 function send (url, method, body, options, load, loadMsg) {
   // 生成请求的url
   url = requestUrl(url)
-  if (load) {
-    Vue.$vux.loading.show(loadMsg)
-  }
-  const opts = { ...options }
+  const opts = {...options}
   opts.headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -105,11 +98,12 @@ function send (url, method, body, options, load, loadMsg) {
         .catch(ex => errorParse(ex.response, load))
   }
 }
+
 export default {
-  get (url, options, { load = true, loadMsg = '加载中...' } = {}) {
+  get (url, options, {load = true, loadMsg = '加载中...'} = {}) {
     return send(url, 'get', null, options, load, loadMsg)
   },
-  post (url, body, options, { load = true, loadMsg = '加载中...' } = {}) {
+  post (url, body, options, {load = true, loadMsg = '加载中...'} = {}) {
     return send(url, 'post', body, options, load, loadMsg)
   }
 }

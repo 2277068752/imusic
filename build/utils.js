@@ -20,13 +20,29 @@ exports.cssLoaders = function (options) {
       sourceMap: options.sourceMap
     }
   }
-
+  // 在px后面添加/*no*/，不会转化px，会原样输出。 --- 一般border需用这个
+  // 在px后面添加/*px*/,会根据dpr的不同，生成三套代码。---- 一般字体需用这个
+  /* var px2remLoader = {
+     loader: 'px2rem-loader',
+     options: {
+       remUnit: 75
+     }
+   } */
   var postcssLoader = {
     loader: 'postcss-loader',
     options: {
       sourceMap: options.sourceMap
     }
   }
+  require('postcss-pxtorem')({
+    rootValue: 75,
+    unitPrecision: 5,
+    propList: ['*'],
+    selectorBlackList: [],
+    replace: true,
+    mediaQuery: false,
+    minPixelValue: 12
+  })
 
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
@@ -57,7 +73,7 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
+    sass: generateLoaders('sass', {indentedSyntax: true}),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')

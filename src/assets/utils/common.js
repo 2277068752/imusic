@@ -90,5 +90,22 @@ export default {
       for (var i = 0; i < n.length; i++) str += '零壹贰叁肆伍陆柒捌玖'.charAt(n.charAt(i)) + unit.charAt(i)
       return str.replace(/零(仟|佰|拾|角)/g, '零').replace(/(零)+/g, '零').replace(/零(兆|万|亿|元)/g, '$1').replace(/(兆|亿)万/g, '$1').replace(/(京|兆)亿/g, '$1').replace(/(京)兆/g, '$1').replace(/(京|兆|亿|仟|佰|拾)(万?)(.)仟/g, '$1$2零$3仟').replace(/^元零?|零分/g, '').replace(/(元|角)$/g, '$1整')
     }
+  },
+  hasClass (el, className) {
+    // 开始或空白字符+类名+空白字符或结束
+    let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
+    // 测试元素是否有该类名，返回布尔值
+    return reg.test(el.className)
+  },
+  addClass (el, className) {
+    if (this.hasClass(el, className)) {
+      return
+    }
+    // 以空白符为切割位置切割生成新数组
+    let newClass = el.className.split(' ')
+    // 数组中加入新类名
+    newClass.push(className)
+    // 将数组元素放入一个字符串，以空白符间隔
+    el.className = newClass.join(' ')
   }
 }
