@@ -13,4 +13,11 @@ export default class extends Base {
       }
     })
   }
+
+  getSescList () {
+    Rank.getDescList().then(res => {
+      if (res.code === Exception.CODE.SUCCESS) {
+      }
+    })
+  }
 }
