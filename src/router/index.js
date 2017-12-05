@@ -1,38 +1,40 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Recommend from '@/views/Recommend/Index.vue'
-import Singer from '@/views/Singers/Index.vue'
-import Rank from '@/views/RankList/Index.vue'
-import Search from '@/views/Search/Index.vue'
-
-Vue.use(Router)
-
-export default new Router({
+export default {
+  defaultTitle: 'iMusic',
   routes: [
     {
       path: '/',
       name: '默认',
-      component: Recommend
+      component: function (resolve) {
+        require(['@/views/Recommend/Index.vue'], resolve)
+      }
     },
     {
       path: '/recommend',
       name: '推荐',
-      component: Recommend
+      component: function (resolve) {
+        require(['@/views/Recommend/Index.vue'], resolve)
+      }
     },
     {
       path: '/singer',
       name: '歌手',
-      component: Singer
+      component: function (resolve) {
+        require(['@/views/Singers/Index.vue'], resolve)
+      }
     },
     {
       path: '/rank',
       name: '排行',
-      component: Rank
+      component: function (resolve) {
+        require(['@/views/RankList/Index.vue'], resolve)
+      }
     },
     {
       path: '/search',
       name: '搜索',
-      component: Search
+      component: function (resolve) {
+        require(['@/views/Search/Index.vue'], resolve)
+      }
     }
   ]
-})
+}

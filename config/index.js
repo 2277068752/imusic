@@ -63,8 +63,9 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-
+    assetsPublicPath: '/vue',
+    offlineApiUrl: 'https://c.y.qq.com/',
+    onlineApiUrl: 'https://c.y.qq.com/',
     /**
      * Source Maps
      */

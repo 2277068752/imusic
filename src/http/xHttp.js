@@ -48,21 +48,21 @@ function errorParse (ex, load) {
 function requestUrl (url) {
   // 生产/测试环境
   if (process.env.NODE_ENV !== 'development') {
-    if (url.startsWith('shopApi')) {
+    if (url.startsWith('music')) {
       // 测试环境
       if (process.env.NODE_ENV === 'testing') {
         // 测试环境，访问测试接口
-        url = url.replace('shopApi', config.build.offlineApiUrl)
+        url = url.replace('music', config.build.offlineApiUrl)
       } else {
-        url = url.replace('shopApi', config.build.onlineApiUrl)
+        url = url.replace('music', config.build.onlineApiUrl)
       }
     }
     // 线上地址，加上项目名称区分
-    url = config.build.assetsPublicPath + url.substring(1)
+    // url = config.build.assetsPublicPath + url.substring(1)
   } else {
     if (url.startsWith('/music')) {
       // 本地开发环境，调用测试接口
-    //  url = url.replace('/music', '')
+      //  url = url.replace('/music', '')
     }
   }
   return url

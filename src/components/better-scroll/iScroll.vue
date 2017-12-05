@@ -109,13 +109,10 @@
 </script>
 
 <style lang="scss">
-  @import "../../assets/styles/global/_mixins";
-  @import "../../assets/styles/global/_fonts";
-
   .page-top-margin {
-    @include page-top-margin;
     &.wrapper {
       width: 100%;
+      overflow: hidden;
       .content {
         width: 100%;
       }

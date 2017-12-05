@@ -52,7 +52,7 @@
         if (this.autoPlay) {
           this._play()
         }
-      }, 20)
+      }, 200)
 
       window.addEventListener('resize', () => {
         if (!this.slide || !this.slide.enabled) {
@@ -68,7 +68,7 @@
             }
           }
           this.refresh()
-        }, 60)
+        }, 300)
       })
     },
     activated () {
@@ -107,7 +107,6 @@
       },
       _setSlideWidth (isResize) {
         this.children = this.$refs.slideGroup.children
-
         let width = 0
         let slideWidth = this.$refs.slide.clientWidth
         for (let i = 0; i < this.children.length; i++) {

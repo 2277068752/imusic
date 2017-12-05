@@ -5,6 +5,7 @@
 .singer-page {
   width: 100%;
   height: 100%;
+  position: fixed;
   @mixin title-h2 {
     @include page-save-distance;
     text-align: left;

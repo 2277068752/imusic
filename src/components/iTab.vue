@@ -8,6 +8,8 @@
   </div>
 </template>
 <script>
+  import { mapState } from 'vuex'
+
   export default {
     components: {},
     data () {
@@ -37,11 +39,16 @@
         tabActive: '1' // 当前触发的tab
       }
     },
-    created () {
+    created () {},
+    mounted () {
       // 根据当前路由，判断tab
       this.currSelectTab()
     },
-    mounted () {},
+    computed: {
+      ...mapState({
+        path: ({global}) => global.currPath
+      })
+    },
     methods: {
       tabSelect (item) {
         this.tabActive = item.key
@@ -49,8 +56,9 @@
         this.$router.push({path: item.link})
       },
       currSelectTab () {
-        let path = this.$route.path
-        switch (path) {
+        // let path = this.$route.path
+        console.log('path:', this.path)
+        switch (this.path) {
           case '/':
           case '/recommend':
             this.tabActive = '1'

@@ -49,6 +49,12 @@ img {
   height: auto;
 }
 
+a,
+img {
+  -webkit-touch-callout: none;
+  /* 禁止长按链接与图片弹出菜单 */
+}
+
 ul li {
   list-style-type: none;
 }
@@ -57,4 +63,28 @@ ul li {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.router-view {
+  .animated {
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+  }
+  .weui-cells {
+    margin-top: 0;
+  }
+  ::-webkit-input-placeholder { /* WebKit browsers */
+    font-size: $placeholder-size;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: $placeholder-size;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: $placeholder-size;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+    font-size: $placeholder-size;
+  }
 }

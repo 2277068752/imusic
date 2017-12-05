@@ -2266,6 +2266,10 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
+fastclick@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/fastclick/-/fastclick-1.0.6.tgz#161625b27b1a5806405936bda9a2c1926d06be6a"
+
 fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
@@ -5693,6 +5697,10 @@ vuex-persistedstate@^2.4.2:
   dependencies:
     deepmerge "^2.0.1"
     shvl "^1.1.1"
+
+vuex-router-sync@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/vuex-router-sync/-/vuex-router-sync-5.0.0.tgz#1a225c17a1dd9e2f74af0a1b2c62072e9492b305"
 
 vuex@^3.0.1:
   version "3.0.1"

@@ -85,9 +85,11 @@ export default class extends Base {
    * 取热门搜索字段
    */
   getHotKey () {
+    this.vm.$loading.show('加载中')
     Search.getHotKey().then((res) => {
       if (res.code === Exception.CODE.SUCCESS) {
         this.vm.hotKeyList = res.data.hotkey.slice(0, 10)
+        this.vm.$loading.hide()
       }
     })
   }
