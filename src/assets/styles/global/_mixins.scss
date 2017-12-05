@@ -1,0 +1,22 @@
+@mixin p-padding-margin-0 {
+  padding: 0;
+  margin: 0;
+}
+
+// 页面距离顶部的距离
+@mixin page-top-margin {
+  position: fixed;
+  top: 176px;
+  z-index: 0;
+  overflow: hidden;
+}
+
+// 页面的安全区域
+@mixin page-save-distance {
+  padding: 0 40px;
+}
+
+// 字体颜色 #ffffff
+@mixin font-color-white($opacity:1) {
+  color: rgba(255, 255, 255, $opacity);
+}

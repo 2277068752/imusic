@@ -38,4 +38,8 @@
   [v-cloak] {
     display: none;
   }
+
+  .page-view {
+    overflow-y: hidden;
+  }
 </style>

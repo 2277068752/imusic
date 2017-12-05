@@ -1,7 +1,13 @@
-import Rank from './Rank'
+import Recommend from './recommend'
+import Singer from './singer'
+import Rank from './rank'
+import Search from './Search'
 import Exception from './exceptions'
 
 export {
   Exception,
-  Rank
+  Recommend,
+  Singer,
+  Rank,
+  Search
 }

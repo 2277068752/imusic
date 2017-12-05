@@ -33,6 +33,7 @@
         <h2 class="fixed-title">{{ fixedTitle }}</h2>
       </div>
     </i-scroll>
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -62,7 +63,6 @@
       this.BLL = new BLL(this)
     },
     mounted () {
-      this.$loading('123', 'show')
       this.getSingerList()
     },
     computed: {

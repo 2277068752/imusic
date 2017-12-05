@@ -8,8 +8,11 @@ import Utils from './assets/utils/index'
 import HttpPlugin from './http'
 import VuelazyLoad from 'vue-lazyload'
 // loading
-// import './plugs/loading/loading.scss'
 import LoadingPlugin from './plugs/loading'
+// toast
+import ToastPlugin from './plugs/toast'
+// vuex
+import store from './vuex/store'
 
 Vue.config.productionTip = false
 
@@ -19,10 +22,13 @@ Vue.use(VuelazyLoad, {
 Vue.use(Utils)
 Vue.use(HttpPlugin)
 Vue.use(LoadingPlugin)
+Vue.use(ToastPlugin)
+
+// const commit = store.commit
+
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
+window.$globalHub = new Vue({
+  store,
   router,
-  template: '<App/>',
-  components: {App}
-})
+  render: h => h(App)
+}).$mount('#root')

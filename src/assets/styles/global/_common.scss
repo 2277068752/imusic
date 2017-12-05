@@ -12,6 +12,8 @@ body {
   padding: 0;
   color: #333333;
   -webkit-overflow-scrolling: touch;
+  background-color: $body-bg-color;
+  color: $main-font-color;
 }
 
 button,
@@ -45,4 +47,14 @@ img {
   border: 0;
   width: 100%;
   height: auto;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }

@@ -26,6 +26,9 @@
       }
       .singer {
         padding: 40px 0 0 60px;
+        &:last-child {
+          padding-bottom: $page-padding-bottom;
+        }
         img {
           width: 100px;
           height: 100px;

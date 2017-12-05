@@ -20,16 +20,12 @@ export default {
   ErrorMsgNotification (code, msg) {
     if (code !== -1) {
       if (code === '9999') {
-        Vue.$vux.toast.show({text: '登录失效，请重新登录！'})
-        // 清理持久化的用户信息
-        window.$globalHub.$store.commit('clear_login_user')
-        window.$globalHub.$store.commit('clear_token')
-        window.$globalHub.$router.push({path: '/login'})
+        Vue.$toast.show('登录失效，请重新登录！')
       } else {
-        Vue.$vux.alert.show({content: msg})
+        Vue.$toast.show(msg)
       }
     } else {
-      Vue.$vux.alert.show({content: '传输异常，请稍后再试！'})
+      Vue.$toast.show('登录失效，请重新登录！')
     }
   }
 }

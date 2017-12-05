@@ -1,0 +1,94 @@
+@import "../../assets/styles/global/_mixins";
+@import "../../assets/styles/global/_fonts";
+@import "../../assets/styles/global/_variable";
+
+.search-page {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 176px;
+  .query-input {
+    @include page-save-distance
+  }
+  .wrapper {
+    position: absolute;
+    top: 100px;
+    height: calc(#{"100% - 100px"});
+    ul {
+      overflow: hidden;
+      li.item {
+        padding: 10px 60px;
+        color: rgba(255, 255, 255, 0.3);
+        font-size: $font-size-l;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        .axon-icon {
+          color: rgba(255, 255, 255, 0.3);
+          padding-right: 6PX;
+          font-size: $font-size-xxl;
+        }
+      }
+    }
+    .no-data {
+      position: absolute;
+      top: 30%;
+      width: 100%;
+    }
+    .hot-key-list {
+      @include page-save-distance;
+      @include font-color-white(0.3);
+      h1 {
+        @include font-color-white(0.5);
+        font-size: $font-size-m;
+        margin: 10px 0;
+      }
+      .item {
+        background: #333;
+        display: inline-block;
+        padding: 5px 20PX;
+        margin: 0 20PX 10PX 0;
+        border-radius: 6px;
+        font-size: $font-size-m;
+        &.active {
+          border: 1px solid $main-font-color;
+          color: $main-font-color;
+        }
+      }
+    }
+    .search-history {
+      @include page-save-distance;
+      @include font-color-white(0.5);
+      margin: 20PX 0;
+      h1 {
+        @include font-color-white(0.5);
+        font-size: $font-size-m;
+        margin: 10px 0;
+        display: flex;
+        height: 80px;
+        .text {
+          flex: 1;
+        }
+        .axon-icon {
+          @include font-color-white(0.3);
+          vertical-align: baseline;
+          font-size: $font-size-xl;
+        }
+      }
+      ul {
+        li {
+          font-size: $font-size-xl;
+          display: flex;
+          height: 80px;
+          .text {
+            flex: 1;
+          }
+          .axon-icon {
+            @include font-color-white(0.3);
+            vertical-align: baseline;
+          }
+        }
+      }
+    }
+  }
+}

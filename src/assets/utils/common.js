@@ -107,5 +107,22 @@ export default {
     newClass.push(className)
     // 将数组元素放入一个字符串，以空白符间隔
     el.className = newClass.join(' ')
+  },
+  removeClass (el, className) {
+    if (el.classList) {
+      el.classList.remove(className)
+    } else {
+      el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ')
+    }
+  },
+  // 取标签自定义的data
+  getData (el, name, val) {
+    const prefix = 'data-'
+    name = prefix + name
+    if (val) {
+      return el.setAttribute(name, val)
+    } else {
+      return el.getAttribute(name)
+    }
   }
 }

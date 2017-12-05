@@ -1,6 +1,7 @@
 import Common from './common.js'
+import LocalStorage from './localStorage'
 
-export const utils = {Common}
+export const utils = {Common, LocalStorage}
 
 export default {
   install (Vue) {

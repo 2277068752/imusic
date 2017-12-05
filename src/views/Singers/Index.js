@@ -7,9 +7,11 @@ export default class extends Base {
    * 取歌手列表信息
    */
   getSingerList () {
+    this.vm.$loading.show('你的偶像马上就出来')
     Singer.getSingerList().then((res) => {
       if (res.code === Exception.CODE.SUCCESS) {
         let data = res.data
+        this.vm.$loading.hide()
         this.vm.singerList = this.normalizeSinger(data.list)
       }
     })
