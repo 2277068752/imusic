@@ -4,13 +4,15 @@ import config from '../../config'
 import createPersistedState from 'vuex-persistedstate'
 import Vue from 'vue'
 import searchInfo from './modules/searchInfo'
+import singer from './modules/singer'
 import global from './modules/global'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     searchInfo,
-    global
+    global,
+    singer
   },
   // 插件
   plugins: [createPersistedState({

@@ -71,7 +71,6 @@
 
   .page-wrap {
     @include page-top-margin;
-    width: 100%;
     .router-view {
       overflow-y: hidden;
       height: 100%;

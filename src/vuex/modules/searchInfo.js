@@ -11,7 +11,7 @@ const mutations = {
   // 保存当前的一条历史记录
   set_history (state, val) {
     if (state.history.indexOf(val) < 0) {
-      state.history.push(val)
+      state.history.unshift(val)
     }
   },
   // 删除选中的一条历史记录

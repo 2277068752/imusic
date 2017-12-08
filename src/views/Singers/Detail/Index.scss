@@ -1,0 +1,114 @@
+@import "../../../assets/styles/global/_variable";
+@import "../../../assets/styles/global/_fonts";
+@import "../../../assets/styles/global/_mixins";
+
+.singer-detail-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  background-color: $body-bg-color;
+  .header {
+    @include page-save-distance;
+    height: 84px;
+    line-height: 84px;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    .back {
+      .axon-icon {
+        font-size: $font-size-xxxxl;
+        color: $main-font-color;
+      }
+    }
+    .title {
+      text-align: center;
+      width: 100%;
+      flex: 1;
+      font-size: $font-size-xxl;
+      font-weight: 500;
+      color: #ffffff;
+    }
+  }
+  .singer-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 540px;
+    position: relative;
+    .filter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      background-color: rgba(7, 17, 27, 0.5);
+    }
+    .play-wrapper {
+      z-index: 2;
+      position: absolute;
+      top: 420px;
+      width: 100%;
+      .play {
+        $height: 66px;
+        text-align: center;
+        margin: 0 auto;
+        border: 1px solid $main-font-color;
+        border-radius: 40PX;
+        width: 280px;
+        height: $height;
+        line-height: $height;
+        font-size: $font-size-s;
+        .axon-icon {
+          color: $main-font-color;
+          font-size: $font-size-xxl;
+          padding-right: 6px;
+          vertical-align: middle;
+        }
+        .text {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  .wrapper {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    background-color: #222222;
+    z-index: 10;
+    .song-list {
+      @include page-save-distance;
+      .song-item {
+        height: 128px;
+        display: flex;
+        align-items: center;
+        -webkit-box-align: center;
+        .song-content {
+          flex: 1;
+          line-height: 40px;
+          font-size: $font-size-l;
+          vertical-align: baseline;
+          .name {
+            color: #ffffff;
+            @include ellipss-one;
+          }
+          .singer {
+            @include font-color-white(0.3);
+            @include ellipss-one;
+            margin-top: 4PX;
+          }
+        }
+      }
+    }
+  }
+  .bg-layer {
+    position: relative;
+    height: 100%;
+    background: #222;
+  }
+}

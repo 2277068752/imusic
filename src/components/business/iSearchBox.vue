@@ -23,11 +23,16 @@
       }
     },
     mounted () {
-      if (this.value) {
+      if (this.value.length > 0) {
         this.query = this.value
       }
     },
     watch: {
+      value (val) {
+        if (this.value) {
+          this.query = val
+        }
+      },
       query (val) {
         let timer
         if (timer) {

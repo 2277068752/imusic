@@ -1,5 +1,7 @@
 import Base from '../../Base'
 import { Exception, Search } from '../../api'
+import { createSong } from '../../model/song'
+import Singers from '../../model/singer'
 
 export default class extends Base {
   /**
@@ -17,14 +19,39 @@ export default class extends Base {
       this.vm.$loading.hide()
       if (res.code === Exception.CODE.SUCCESS) {
         let data = res.data
+        this.vm.dataList = this.vm.dataList.concat(this.getResult(data))
         this.checkMore(data)
-        if (this.vm.page > 1) {
-          this.vm.dataList = this.vm.dataList.concat(data.song.list)
-        } else {
-          this.vm.dataList = data.song.list
-        }
       }
     })
+  }
+
+  /**
+   * 组织歌曲列表
+   */
+  getResult (data) {
+    let ret = []
+    // 歌手
+    if (data.zhida && data.zhida.singerid) {
+      ret.push({
+        ...data.zhida,
+        ...{type: 'singer'}
+      })
+    }
+    // 歌曲
+    if (data.song) {
+      ret = ret.concat(this.normalizeSongs(data.song.list))
+    }
+    return ret
+  }
+
+  normalizeSongs (list) {
+    let ret = []
+    list.forEach((musicData) => {
+      if (musicData.songid && musicData.albumid) {
+        ret.push(createSong(musicData))
+      }
+    })
+    return ret
   }
 
   /**
@@ -33,14 +60,12 @@ export default class extends Base {
   search () {
     this.vm.page = 1
     this.vm.$refs.dataList.scrollTo(0, 0)
+    this.vm.dataList = []
+    this.vm.hasMore = true
     if (this.vm.queryVal.length > 0) {
       // 保存搜索记录
       this.saveSearchHistory()
-      this.vm.hasMore = true
       this.getSearchList()
-    } else {
-      this.vm.hasMore = true
-      this.vm.dataList = []
     }
   }
 
@@ -92,5 +117,22 @@ export default class extends Base {
         this.vm.$loading.hide()
       }
     })
+  }
+
+  /**
+   * 歌曲/歌手点击
+   * @param model
+   */
+  selectItem (model) {
+    let singer = new Singers({
+      id: model.singermid,
+      name: model.singername
+    })
+    // 判断是否为歌手，如果为歌手，则跳转到歌手页面
+    if (model.type && model.type === 'singer') {
+      // 持久化歌手信息
+      this.vm.$store.commit('set_singerInfo', singer)
+      this.vm.$router.push({path: `/search/${singer.id}`})
+    }
   }
 }

@@ -12,15 +12,24 @@
               :topMargin="topMargin"
               @beforeScroll="listScroll">
       <ul v-show="dataList.length > 0">
-        <template v-for="song in dataList">
-          <li class="item">
-            <span class="axon-icon"
-                  v-html="song.type==='singer'?'&#xe646;':'&#xe612;'"></span>
-            <span>{{song.albumname}}</span>
+        <template v-for="(item,index) in dataList">
+          <li @click="selectItem(item)" class="item">
+            <label v-if="item.type==='singer'">
+               <span class="axon-icon"
+                     v-html="'&#xe647;'"></span>
+              <span>{{item.singername}}</span>
+            </label>
+            <label v-else>
+              <span class="axon-icon" v-html="'&#xe612;'"></span>
+              <span>{{item.name}} - {{item.singer}}</span>
+            </label>
           </li>
         </template>
-        <!--region 下来加载loading-->
-        <loading v-show="hasMore" :title="''"></loading>
+        <!--region loading more-->
+        <div class="loading" slot="loading" v-show="hasMore">
+          <img class="img" src="../../assets/images/loading.gif">
+          <p class="desc">加载更多</p>
+        </div>
         <!--endregion-->
       </ul>
       <!--region 热门搜索词汇-->
@@ -35,7 +44,7 @@
       <!--endregion-->
       <!--region 搜索历史-->
       <div class="search-history" v-show="!queryVal">
-        <h1><span class="text">搜索历史</span><span class="axon-icon" v-html="'&#xe616;'" @clik="emptyHistory()"></span>
+        <h1><span class="text">搜索历史</span><span class="axon-icon" v-html="'&#xe616;'" @click="emptyHistory()"></span>
         </h1>
         <ul>
           <template v-for="(item, index) in historyList">
@@ -53,19 +62,19 @@
       </div>
       <!--endregion-->
     </i-scroll>
-    <!--<router-view></router-view>-->
+    <router-view></router-view>
   </div>
 </template>
 <script>
   import BLL from './Index'
   import SearchBox from '../../components/business/iSearchBox.vue'
   import IScroll from '../../components/better-scroll/iScroll.vue'
-  import Loading from '../../components/loading-gif.vue'
   import NoResult from '../../components/business/iNoResult.vue'
+
   import { mapState } from 'vuex'
 
   export default {
-    components: {SearchBox, IScroll, Loading, NoResult},
+    components: {SearchBox, IScroll, NoResult},
     data () {
       return {
         queryVal: '',
@@ -119,7 +128,6 @@
       // 点击历史记录
       historySelect (item) {
         this.queryVal = item
-        this.BLL.search()
       },
       // 删除某一条历史记录
       delHistoryItem (item) {
@@ -127,7 +135,12 @@
       },
       // 清空历史记录
       emptyHistory () {
+        console.log('123:', 123)
         this.$store.commit('empty_history')
+      },
+      // 栏目点击
+      selectItem (item) {
+        this.BLL.selectItem(item)
       }
     }
   }

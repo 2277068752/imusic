@@ -12,7 +12,7 @@
           <li class="item" ref="listGroup">
             <h2>{{item.title}}</h2>
             <template v-for="(singer,index) in item.items">
-              <div class="singer">
+              <div class="singer" @click="goSingerDetail(singer)">
                 <img v-lazy="singer.avatar"/>
                 <span>{{singer.name}}</span>
               </div>
@@ -33,7 +33,7 @@
         <h2 class="fixed-title">{{ fixedTitle }}</h2>
       </div>
     </i-scroll>
-    <!--<router-view></router-view>-->
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -166,6 +166,10 @@
         }
         this.scrollY = -this.listHeight[index]
         this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
+      },
+      // 跳转到歌手详情
+      goSingerDetail (item) {
+        this.BLL.goSingerDetail(item)
       }
     }
   }

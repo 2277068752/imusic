@@ -83,11 +83,10 @@
   @import "../assets/styles/global/_variable";
 
   .tab-comp {
-    position: fixed;
-    top: 88px;
+    position: relative;
+    top: 0;
     left: 0;
     width: 100%;
-    z-index: 2;
     height: 88px;
     display: flex;
     .item {

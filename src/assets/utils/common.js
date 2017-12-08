@@ -1,4 +1,23 @@
 ﻿var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+// 主流浏览器内核
+let elementStyle = document.createElement('div').style
+let vendor = (() => {
+  let transfromNames = {
+    webkit: 'webkitTransform',
+    Moz: 'MozTransform',
+    ms: 'msTransform',
+    O: 'OTransform',
+    standard: 'transform'
+  }
+
+  for (let key in transfromNames) {
+    if (elementStyle[transfromNames[key]] !== undefined) {
+      return key
+    }
+  }
+
+  return false
+})()
 export default {
   getWidthHeight () {
     let w = window
@@ -124,5 +143,15 @@ export default {
     } else {
       return el.getAttribute(name)
     }
+  },
+  // 添加样式的浏览器前缀
+  prefixStyle (style) {
+    if (vendor === false) {
+      return false
+    }
+    if (vendor === 'standard') {
+      return style
+    }
+    return vendor + style.charAt(0).toUpperCase() + style.substr(1)
   }
 }

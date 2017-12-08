@@ -1,3 +1,5 @@
+import SingerDetail from '@/views/Singers/Detail/Index.vue'
+
 export default {
   defaultTitle: 'iMusic',
   routes: [
@@ -20,7 +22,14 @@ export default {
       name: '歌手',
       component: function (resolve) {
         require(['@/views/Singers/Index.vue'], resolve)
-      }
+      },
+      children: [
+        {
+          path: ':id',
+          name: '歌手详情',
+          component: SingerDetail
+        }
+      ]
     },
     {
       path: '/rank',
@@ -34,7 +43,14 @@ export default {
       name: '搜索',
       component: function (resolve) {
         require(['@/views/Search/Index.vue'], resolve)
-      }
+      },
+      children: [
+        {
+          path: ':id',
+          name: '歌手详情',
+          component: SingerDetail
+        }
+      ]
     }
   ]
 }

@@ -20,11 +20,10 @@
   @import "../assets/styles/global/_variable";
 
   .header-comp {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 2;
     height: 88px;
     text-align: center;
     .icon {

@@ -42,4 +42,11 @@
   opacity: 0;
   transform: translate3d(-100%, 0, 0);
 }
+/*子页面 进入 退出 动画*/
+.slide-enter-active, .slide-leave-active {
+  transition: all .3s;
+}
 
+.slide-enter, .slide-leave-to {
+  transform: translate3d(100%, 0, 0);
+}

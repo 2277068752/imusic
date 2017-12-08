@@ -1,6 +1,9 @@
 <template>
   <div ref="pageWrapper" :class="topMargin>0?'wrapper page-top-margin':'wrapper'" :style="{height:pageHeight}">
-    <slot></slot>
+    <!--<div class="content">-->
+      <slot></slot>
+      <slot name="loading"></slot>
+    <!--</div>-->
   </div>
 </template>
 
@@ -109,12 +112,29 @@
 </script>
 
 <style lang="scss">
+  @import "../../assets/styles/global/_fonts";
+
   .page-top-margin {
+    flex-direction: column;
     &.wrapper {
       width: 100%;
       overflow: hidden;
       .content {
         width: 100%;
+      }
+    }
+    .loading {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      .img {
+        width: 25PX;
+        height: 25PX;
+      }
+      .desc {
+        margin-top: 6PX;
+        font-size: $font-size-m;
+        color: rgba(255, 255, 255, 0.3)
       }
     }
   }

@@ -1,6 +1,7 @@
 import Base from '../../Base'
 import { Exception, Singer } from '../../api'
-import SingerModel from '../../Base/singer'
+import Singers from '../../model/singer'
+import { createSong } from '../../model/song'
 
 export default class extends Base {
   /**
@@ -30,7 +31,7 @@ export default class extends Base {
     }
     list.forEach((_x, index) => {
       if (index < this.vm.HOT_SINGER_LEN) {
-        map.hot.items.push(new SingerModel({
+        map.hot.items.push(new Singers({
           id: _x.Fsinger_mid,
           name: _x.Fsinger_name
         }))
@@ -42,7 +43,7 @@ export default class extends Base {
           items: []
         }
       }
-      map[key].items.push(new SingerModel({
+      map[key].items.push(new Singers({
         id: _x.Fsinger_mid,
         name: _x.Fsinger_name
       }))
@@ -63,5 +64,41 @@ export default class extends Base {
       return a.title.charCodeAt(0) - b.title.charCodeAt(0)
     })
     return hot.concat(ret)
+  }
+
+  /**
+   *  根据歌手的id 取该歌手的歌曲列表
+   */
+  getSongListBySingerId () {
+    this.vm.$loading.show('精彩歌曲马上来')
+    Singer.getSongListBySingerId(this.vm.singerInfo.id).then((res) => {
+      if (res.code === Exception.CODE.SUCCESS) {
+        this.vm.$loading.hide()
+        this.vm.songListData = this.normalizeSongs(res.data.list)
+      }
+    })
+  }
+
+  /**
+   * 整理歌曲列表格式
+   * @param list
+   * @returns {Array}
+   */
+  normalizeSongs (list) {
+    let ret = [] // 最终需要的返回值
+    list.forEach((item) => {
+      let {musicData} = item
+      if (musicData.songid && musicData.albumid) {
+        ret.push(createSong(musicData))
+      }
+    })
+
+    return ret
+  }
+
+  goSingerDetail (singer) {
+    // 持久化歌手信息
+    this.vm.$store.commit('set_singerInfo', singer)
+    this.vm.$router.push({path: `/singer/${singer.id}`})
   }
 }

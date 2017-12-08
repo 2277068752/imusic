@@ -7,6 +7,9 @@
 @mixin page-top-margin {
   position: fixed;
   top: 176px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
   overflow: hidden;
 }
@@ -19,4 +22,11 @@
 // 字体颜色 #ffffff
 @mixin font-color-white($opacity:1) {
   color: rgba(255, 255, 255, $opacity);
+}
+
+// 单行省略
+@mixin ellipss-one {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
