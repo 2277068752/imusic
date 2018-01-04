@@ -1,6 +1,6 @@
 <template>
-    <div class="MyContain">
-    </div>
+  <div class="player-page">
+  </div>
 </template>
 <script>
   export default {
@@ -13,8 +13,6 @@
   }
 </script>
 
-<style lang="less" rel="stylesheet/less" scoped>
-    .MyContain {
-        background-color: #fff;
-    }
+<style lang="scss">
+  @import "./Index";
 </style>
